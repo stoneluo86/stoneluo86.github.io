@@ -7,13 +7,26 @@
   
   <title>石头猫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="类加载机制 类加载过程：  Loading阶段：把class二进制文件加载进jvm内存 Verifying阶段:验证class是否符合当前的jvm，我们可以看一下class字节码格式  我们自己写一个Java类看一下对应的数据是哪些： 12345678910111213141516171819202122package com.example.demo;public class Cat imple">
+<meta property="og:type" content="article">
 <meta property="og:title" content="石头猫">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/05/11/类加载机制/index.html">
 <meta property="og:site_name" content="石头猫">
+<meta property="og:description" content="类加载机制 类加载过程：  Loading阶段：把class二进制文件加载进jvm内存 Verifying阶段:验证class是否符合当前的jvm，我们可以看一下class字节码格式  我们自己写一个Java类看一下对应的数据是哪些： 12345678910111213141516171819202122package com.example.demo;public class Cat imple">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/home/stone/Documents/classloading_progress.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/Documents/bytecode_structure.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589169855591.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589169751141.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589169921302.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589173374855.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589173400885.png">
+<meta property="og:image" content="http://yoursite.com/home/stone/.config/Typora/typora-user-images/1589173446329.png">
+<meta property="og:updated_time" content="2020-05-11T05:05:02.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="石头猫">
+<meta name="twitter:description" content="类加载机制 类加载过程：  Loading阶段：把class二进制文件加载进jvm内存 Verifying阶段:验证class是否符合当前的jvm，我们可以看一下class字节码格式  我们自己写一个Java类看一下对应的数据是哪些： 12345678910111213141516171819202122package com.example.demo;public class Cat imple">
+<meta name="twitter:image" content="http://yoursite.com/home/stone/Documents/classloading_progress.png">
   
     <link rel="alternate" href="/atom.xml" title="石头猫" type="application/atom+xml">
   
@@ -60,9 +73,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-类加载机制" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-类加载机制" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/11/类加载机制/" class="article-date">
   <time datetime="2020-05-11T05:05:02.420Z" itemprop="datePublished">2020-05-11</time>
@@ -124,110 +135,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-JavaDoc of ClassLoader" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/11/JavaDoc of ClassLoader/" class="article-date">
-  <time datetime="2020-05-11T01:30:16.000Z" itemprop="datePublished">2020-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/深入java/">深入java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/11/JavaDoc of ClassLoader/">JavaDoc of ClassLoader</a>
-    </h1>
+    <a href="/2020/05/11/JavaDoc of ClassLoader/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaDoc of ClassLoader</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaDoc-of-ClassLoader"><a href="#JavaDoc-of-ClassLoader" class="headerlink" title="JavaDoc of ClassLoader"></a>JavaDoc of ClassLoader</h1><p>&emsp;A class loader is an object that is responsible for loading classes. The class ClassLoader is an abstract class. Given the binary name of a class, a class loader should attempt to locate or generate data that constitutes a definition for the class. A typical strategy is to transform the name into a file name and then read a “class file” of that name from a file system.</p>
-<p>&emsp;Every Class object contains a reference to the ClassLoader that defined it.<br>&emsp;Class objects for array classes are not created by class loaders, but are created automatically as required by the Java runtime. The class loader for an array class, as returned by Class.getClassLoader() is the same as the class loader for its element type; if the element type is a primitive type, then the array class has no class loader.</p>
-<p>&emsp;Applications implement subclasses of ClassLoader in order to extend the manner in which the Java virtual machine dynamically loads classes.</p>
-<p>&emsp;Class loaders may typically be used by security managers to indicate security domains.<br>The ClassLoader class uses a delegation model to search for classes and resources. Each instance of ClassLoader has an associated parent class loader. When requested to find a class or resource, a ClassLoader instance will delegate the search for the class or resource to its parent class loader before attempting to find the class or resource itself. The virtual machine’s built-in class loader, called the “bootstrap class loader”, does not itself have a parent but may serve as the parent of a ClassLoader instance.</p>
-<p>&emsp;Class loaders that support concurrent loading of classes are known as parallel capable class loaders and are required to register themselves at their class initialization time by invoking the ClassLoader.registerAsParallelCapable method. Note that the ClassLoader class is registered as parallel capable by default. However, its subclasses still need to register themselves if they are parallel capable. In environments in which the delegation model is not strictly hierarchical, class loaders need to be parallel capable, otherwise class loading can lead to deadlocks because the loader lock is held for the duration of the class loading process (see loadClass methods).</p>
-<p>&emsp;Normally, the Java virtual machine loads classes from the local file system in a platform-dependent manner. For example, on UNIX systems, the virtual machine loads classes from the directory defined by the CLASSPATH environment variable.</p>
-<p>&emsp;However, some classes may not originate from a file; they may originate from other sources, such as the network, or they could be constructed by an application. The method defineClass converts an array of bytes into an instance of class Class. Instances of this newly defined class can be created using Class.newInstance.</p>
-<p>&emsp;The methods and constructors of objects created by a class loader may reference other classes. To determine the class(es) referred to, the Java virtual machine invokes the loadClass method of the class loader that originally created the class.<br>For example, an application could create a network class loader to download class files from a server. Sample code might look like:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ClassLoader loader = <span class="keyword">new</span> NetworkClassLoader(host, port);</span><br><span class="line">Object main = loader.loadClass(<span class="string">"Main"</span>, <span class="keyword">true</span>).newInstance();</span><br><span class="line">     . . .</span><br></pre></td></tr></table></figure>
-<p>The network class loader subclass must define the methods findClass and loadClassData to load a class from the network. Once it has downloaded the bytes that make up the class, it should use the method defineClass to create a class instance. A sample implementation is:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NetworkClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line">           String host;</span><br><span class="line">           <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Class <span class="title">findClass</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">byte</span>[] b = loadClassData(name);</span><br><span class="line">	 	<span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] loadClassData(String name) &#123;</span><br><span class="line">		 <span class="comment">// load the class data from the connection</span></span><br><span class="line">	     . . .</span><br><span class="line">		  &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>Binary names<br>Any class name provided as a String parameter to methods in ClassLoader must be a binary name as defined by The Java™ Language Specification.<br>Examples of valid class names include:<br>     “java.lang.String”<br>     “javax.swing.JSpinner$DefaultEditor”<br>     “java.security.KeyStore$Builder$FileBuilder$1”<br>     “java.net.URLClassLoader$3$1”</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/11/JavaDoc of ClassLoader/" data-id="cka20vo4u00023ujawfcxqelg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classloader/">classloader</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javadoc/">javadoc</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/21/hello-world/" class="article-date">
-  <time datetime="2019-04-21T15:19:23.281Z" itemprop="datePublished">2019-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/hello-world/" data-id="cka20vo4s00013uja8mpsf8iy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
